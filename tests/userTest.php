@@ -10,5 +10,5 @@
   }else {
     echo "nie jest";
   }
-
+///todo test geter and seter - zrobić set na czymś i sprawdzić geter - najlepiej funkcją
  ?>

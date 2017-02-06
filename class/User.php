@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class represents one User
+ * Class represents one User - zrobić pozostałe klasy - paczkę rozmiar itp
  */
 class User{
 
@@ -11,6 +11,7 @@ class User{
   private $surname;
   private $credits;
   private $hashedPassword;
+  static public $connection;
 
   function __construct()
   {
@@ -88,6 +89,7 @@ class User{
     $this->hashedPassword=$hashedPassword;
     return true;
   }
+  // TODO: setter do connection
 }
 
 
