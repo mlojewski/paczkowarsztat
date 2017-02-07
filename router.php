@@ -14,8 +14,8 @@ $request = $_SERVER['REQUEST_URI'];
 $arrayRequest = explode('/', $request);
 
 
-var_dump($requestClass);
-var_dump($request);
+// var_dump($requestClass);
+// var_dump($request);
 if(isset($arrayRequest[4])){
   $requestClass = $arrayRequest[4];
 }else {
@@ -23,15 +23,26 @@ if(isset($arrayRequest[4])){
   die();
 }
 
+if (isset($arrayRequest[5])) {
+  $requestParam = intval($arrayRequest[5]);
+  //rzutowanie jawne - wpisanie (int) przed $arrayRequest
+}else {
+  echo "nie podałeś parametru";
+}
 
 if ($_SERVER['REQUEST_METHOD']=="GET") {
   if ($requestClass == 'user') {
-    $oUser = new User();
-    $userData=$oUser->loadFromDB(1);
-    var_dump($userData);
-  }else {
+    //wyświetl jednego
+      if  ($requestParam>0) {
+        $oUser = new User();
+        $userData=$oUser->loadFromDB($requestParam);
+        var_dump($userData);
+      }
+    } else {
     echo "nie user";
   }
+
 }
+
 
  ?>

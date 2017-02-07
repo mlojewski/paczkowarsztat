@@ -108,6 +108,16 @@ class User{
       return false;
     }
   }
+
+  static function loadAllFromDB()
+  {
+    $sql="SELECT * FROM User";
+    $userList = [];
+  if ($result = Self::$connection->query($sql)) {
+    # code...
+  }
+
+  }
   // TODO: setter do connection
 }
 
