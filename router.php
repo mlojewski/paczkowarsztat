@@ -14,17 +14,21 @@ $request = $_SERVER['REQUEST_URI'];
 $arrayRequest = explode('/', $request);
 
 
-// var_dump($requestClass);
-// var_dump($request);
+var_dump($requestClass);
+var_dump($request);
 if(isset($arrayRequest[4])){
   $requestClass = $arrayRequest[4];
 }else {
   echo "nie podałeś nazwy klasy";
   die();
 }
-if ($_SERVER['REQUEST_METHOD']=="GET") {
-  if ($_SERVER['REQUEST_URI'] == '/paczkomat/paczkowarsztat/router.php/user') {
 
+
+if ($_SERVER['REQUEST_METHOD']=="GET") {
+  if ($requestClass == 'user') {
+    $oUser = new User();
+    $userData=$oUser->loadFromDB(1);
+    var_dump($userData);
   }else {
     echo "nie user";
   }

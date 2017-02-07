@@ -91,17 +91,17 @@ class User{
   }
   public function loadFromDB($idUser)
   {
-    $sql="SELECT * FROM user WHERE id = $idUser";
-
+    $sql="SELECT * FROM User WHERE id = $idUser";
+// można prrzy pomocy var dum $sql wyciąć linię kodu i wpisać bezpośrednio do phpmyadmin
     if ($result = Self::$connection->query($sql)) {
-      $row=$result->fetch_assoc();
+      $row=$result->fetch(PDO::FETCH_ASSOC);
 
       $this->id=$row['id'];
       $this->name=$row['name'];
       $this->surname=$row['surname'];
       $this->credits=$row['credits'];
       $this->hashedPassword=$row['pass'];
-      $this->addresId=$row['addresId'];
+      $this->addressId=$row['addressId'];
       //not "true" due to użycie widoku - it will be true aftr all
       return $row;
     }else {
