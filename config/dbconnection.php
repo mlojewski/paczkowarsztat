@@ -1,13 +1,13 @@
 <?php
 
-require '../class/user.php';
+require 'class/User.php';
 
 $host="localhost";
-$db="paczkomaty";
-$user="root";
-$password="coderslab";
+$db="paczkowarsztat";
+$user="paczkowarsztat";
+$password="aaa";
 
-$connection = new PDO('mysql:host=$host;dbname=$db'.$user, $password);
+$connection = new PDO("mysql:host=$host;dbname=$db;", $user, $password);
 
 User::$connection = $connection;
 

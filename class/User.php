@@ -6,7 +6,7 @@
 class User{
 
   private $id;
-  private $address;
+  private $addressId;
   private $name;
   private $surname;
   private $credits;
@@ -16,7 +16,7 @@ class User{
   function __construct()
   {
     $this->id=-1;
-    $this->address='';
+    $this->addressId=null;
     $this->name='';
     $this->surname='';
     $this->credits=null;
@@ -27,14 +27,14 @@ class User{
   {
     return $this->id;
   }
-  public function getAddress()
+  public function getAddressId()
   {
-    return $this->address;
+    return $this->addressId;
   }
-  public function setAddress($address)
+  public function setAddressId($addressId)
   {
-    if (is_string($address)) {
-      $this->address=$address;
+    if (is_int($addressId)) {
+      $this->addressId=$addressId;
       return true;
     }else {
       echo "podano nieprawidłowy adres";
@@ -88,6 +88,25 @@ class User{
     $hashedPassword=password_hash($password, PASSWORD_BCRYPT);
     $this->hashedPassword=$hashedPassword;
     return true;
+  }
+  public function loadFromDB($idUser)
+  {
+    $sql="SELECT * FROM user WHERE id = $idUser";
+
+    if ($result = Self::$connection->query($sql)) {
+      $row=$result->fetch_assoc();
+
+      $this->id=$row['id'];
+      $this->name=$row['name'];
+      $this->surname=$row['surname'];
+      $this->credits=$row['credits'];
+      $this->hashedPassword=$row['pass'];
+      $this->addresId=$row['addresId'];
+      //not "true" due to użycie widoku - it will be true aftr all
+      return $row;
+    }else {
+      return false;
+    }
   }
   // TODO: setter do connection
 }

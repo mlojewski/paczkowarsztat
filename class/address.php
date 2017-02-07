@@ -58,7 +58,7 @@ class Address
   }
   public function setAddressNumber($addressNumber)
   {
-    if (is_numeric($addressNumber)) {
+    if (is_string($addressNumber)) {
       $this->addressNumber=$addressNumber;
       return true;
     }else {
@@ -71,7 +71,7 @@ class Address
   }
   public function setFlatNumber($flatNumber)
   {
-    if (is_numeric($flatNumber)) {
+    if (is_string($flatNumber)) {
       $this->flatNumber=$flatNumber;
       return true;
     }else {
