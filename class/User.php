@@ -108,13 +108,21 @@ class User{
       return false;
     }
   }
-
   static function loadAllFromDB()
   {
     $sql="SELECT * FROM User";
-    $userList = [];
+
   if ($result = Self::$connection->query($sql)) {
-    # code...
+
+    $row = [];
+
+    foreach ($result as $key => $value) {
+      $row [$key] = $value;
+    
+    }
+    return $row;
+  }else {
+    return false;
   }
 
   }

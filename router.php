@@ -8,6 +8,7 @@ require 'config/dbconnection.php';
 $request = '';
 $arrayRequest = [];
 $requestClass='';
+$requestParam=null;
 
 //parsowanie zapytania
 $request = $_SERVER['REQUEST_URI'];
@@ -27,16 +28,21 @@ if (isset($arrayRequest[5])) {
   $requestParam = intval($arrayRequest[5]);
   //rzutowanie jawne - wpisanie (int) przed $arrayRequest
 }else {
-  echo "nie podałeś parametru";
+  echo "nie podałeś parametru<br>";
 }
 
 if ($_SERVER['REQUEST_METHOD']=="GET") {
   if ($requestClass == 'user') {
+
     //wyświetl jednego
       if  ($requestParam>0) {
         $oUser = new User();
         $userData=$oUser->loadFromDB($requestParam);
-        var_dump($userData);
+        print_r($userData);
+      }
+      if ($requestParam == null) {
+        $allUsers=User::loadAllFromDB();
+        print_r(json_encode($allUsers));
       }
     } else {
     echo "nie user";

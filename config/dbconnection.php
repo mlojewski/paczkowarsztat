@@ -7,7 +7,7 @@ $db="paczkowarsztat";
 $user="paczkowarsztat";
 $password="aaa";
 
-$connection = new PDO("mysql:host=$host;dbname=$db;", $user, $password);
+$connection = new PDO("mysql:host=$host;dbname=$db; charset=UTF8", $user, $password);
 
 User::$connection = $connection;
 
